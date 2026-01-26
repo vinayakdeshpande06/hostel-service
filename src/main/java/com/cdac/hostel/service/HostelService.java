@@ -19,6 +19,7 @@ public class HostelService {
     @Autowired
     private AuthServiceClient authClient;
 
+    //1.Creating a New Hostel
     public Hostel createHostel(Hostel hostel, Long userId) {
         if (!authClient.userExists(userId)) {
             throw new RuntimeException("User not found");
@@ -26,15 +27,19 @@ public class HostelService {
         return hostelRepository.save(hostel);
     }
 
-    public List<Hostel> getPendingHostels() {
-        return hostelRepository.findByStatus(HostelStatus.PENDING);
-    }
-    
+    //2.Getting all the Approved Hostels
     public List<Hostel> getApprovedHostels() {
         return hostelRepository.findByStatus(HostelStatus.APPROVED);
     }
     
-    //This is Like Updating operation of CRUD
+    //3.Getting All the Pending Hostels
+    public List<Hostel> getPendingHostels() {
+        return hostelRepository.findByStatus(HostelStatus.PENDING);
+    }
+    
+   
+    //3.Approving the Hostel
+    //This is Like Updating(PUT) operation of CRUD
     public Hostel approveHostel(Long hostelId) {
     	System.out.println("Entered HostelService approveHostel Method");
         Hostel hostel = hostelRepository.findById(hostelId)
@@ -44,9 +49,8 @@ public class HostelService {
         return hostelRepository.save(hostel);
     }
 
-    
-    //This is Like Updating operation of CRUD
-    // 🔹 ADMIN: reject hostel
+    //4.Rejecting the Hostel
+    //This is Like Updating(PUT) operation of CRUD
     public Hostel rejectHostel(Long hostelId, String reason) {
         Hostel hostel = hostelRepository.findById(hostelId)
                 .orElseThrow(() -> new RuntimeException("Hostel not found"));

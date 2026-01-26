@@ -21,6 +21,8 @@ public class HostelRatingService {
     @Autowired
     private AuthServiceClient authClient;
 
+    
+    //1.Rating a Hostel (POST Operation)
     public HostelRating rateHostel(
             Long hostelId, Long userId, MultiCriteriaRatingRequest req) {
 
@@ -48,6 +50,9 @@ public class HostelRatingService {
     }
     
     
+    
+    
+    //2.Get All Ratings of Hostel
     public List<HostelRating> getRatingsByHostel(Long hostelId) {
         return ratingRepository.findByHostelId(hostelId);
     }

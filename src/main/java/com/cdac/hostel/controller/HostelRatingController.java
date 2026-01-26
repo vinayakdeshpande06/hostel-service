@@ -23,6 +23,7 @@ public class HostelRatingController {
     @Autowired
     private HostelRatingService ratingService;
 
+    //1.Rating a Hostel -- Post Method
     @PostMapping("/{hostelId}/rate")
     public HostelRating rateHostel(
             @PathVariable Long hostelId,
@@ -33,7 +34,7 @@ public class HostelRatingController {
     }
     
     
- // 2️⃣ VIEW ALL RATINGS OF A HOSTEL
+ // 2. VIEW ALL RATINGS OF A HOSTEL
     @GetMapping("/{hostelId}/ratings")
     public List<HostelRating> getRatingsByHostel(
             @PathVariable Long hostelId) {
@@ -41,8 +42,9 @@ public class HostelRatingController {
         return ratingService.getRatingsByHostel(hostelId);
     }
 
+	
 	/*
-	 * // 3️⃣ VIEW AVERAGE / SUMMARY RATING OF A HOSTEL
+	 * // 3️ VIEW AVERAGE / SUMMARY RATING OF A HOSTEL
 	 * 
 	 * @GetMapping("/{hostelId}/ratings/summary") public RatingDTO getRatingSummary(
 	 * 
@@ -50,5 +52,6 @@ public class HostelRatingController {
 	 * 
 	 * return ratingService.getRatingSummary(hostelId); }
 	 */
+	 
     
 }

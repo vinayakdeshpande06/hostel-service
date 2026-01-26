@@ -28,7 +28,7 @@ public class HostelController {
         return hostelService.createHostel(hostel, userId);
     }
 
-    @GetMapping
+    @GetMapping("/approved")
     public List<Hostel> getApprovedHostels() {
         return hostelService.getApprovedHostels();
     }
