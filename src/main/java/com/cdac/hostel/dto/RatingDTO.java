@@ -10,11 +10,11 @@ public class RatingDTO {
     private Long hostelId;
     private Long userId;
 
-    private Integer cleanlinessRating;
-    private Integer foodQualityRating;
-    private Integer safetyRating;
-    private Integer locationRating;
-    private Integer affordabilityRating;
+    private Double cleanlinessRating;
+    private Double foodQualityRating;
+    private Double safetyRating;
+    private Double locationRating;
+    private Double affordabilityRating;
 
     private Double overallRating;
     private String reviewText;

@@ -10,8 +10,8 @@ import com.cdac.hostel.model.Hostel;
 import com.cdac.hostel.service.HostelService;
 
 @RestController
-@RequestMapping("/api/internal/hostels")
-public class InternalHostelController {
+@RequestMapping("/api/admin/hostels")
+public class AdminHostelController {
 
     @Autowired
     private HostelService hostelService;
@@ -22,13 +22,13 @@ public class InternalHostelController {
 	  hostelService.getPendingHostels(); }
 	 
 
-    // 2. Approve hostel
+    // 2. Approve hostel(ADMIN)
     @PutMapping("/{hostelId}/approve")
     public Hostel approveHostel(@PathVariable Long hostelId) {
         return hostelService.approveHostel(hostelId);
     }
 
-    // 3. Reject hostel
+    // 3. Reject hostel (ADMIN)
     @PutMapping("/{hostelId}/reject")
     public Hostel rejectHostel(
             @PathVariable Long hostelId,

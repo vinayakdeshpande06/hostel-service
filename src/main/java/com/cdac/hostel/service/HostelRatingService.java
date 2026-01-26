@@ -103,11 +103,14 @@ public class HostelRatingService {
                  affordabilityAvg) / 5;
 
         
-		/*
-		 * // optional: not used dto.setCleanlinessRating(null);
-		 * dto.setFoodQualityRating(null); dto.setSafetyRating(null);
-		 * dto.setLocationRating(null); dto.setAffordabilityRating(null);
-		 */
+		
+		   
+          dto.setCleanlinessRating(cleanlinessAvg);
+		  dto.setFoodQualityRating(foodQualityAvg); 
+		  dto.setSafetyRating(safetyAvg);
+		  dto.setLocationRating(locationAvg); 
+		  dto.setAffordabilityRating(affordabilityAvg);
+		 
 
         dto.setOverallRating(overallAvg);
 
