@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cdac.hostel.client.AuthServiceClient;
 import com.cdac.hostel.dto.MultiCriteriaRatingRequest;
+import com.cdac.hostel.dto.RatingDTO;
 import com.cdac.hostel.model.HostelRating;
 import com.cdac.hostel.repository.HostelRatingRepository;
 
@@ -56,4 +57,61 @@ public class HostelRatingService {
     public List<HostelRating> getRatingsByHostel(Long hostelId) {
         return ratingRepository.findByHostelId(hostelId);
     }
+    
+    
+    //3.Get Summary Rating/Average of a Hostel
+    
+    public RatingDTO getRatingSummary(Long hostelId) {
+
+        List<HostelRating> ratings = ratingRepository.findByHostelId(hostelId);
+
+        RatingDTO dto = new RatingDTO();
+        dto.setHostelId(hostelId);
+
+        if (ratings == null || ratings.isEmpty()) {
+            dto.setOverallRating(0.0);
+            return dto;
+        }
+
+        double cleanlinessSum = 0;
+        double foodQualitySum = 0;
+        double safetySum = 0;
+        double locationSum = 0;
+        double affordabilitySum = 0;
+
+        int count = ratings.size();
+
+        for (HostelRating rating : ratings) {
+            cleanlinessSum += rating.getCleanlinessRating();
+            foodQualitySum += rating.getFoodQualityRating();
+            safetySum += rating.getSafetyRating();
+            locationSum += rating.getLocationRating();
+            affordabilitySum += rating.getAffordabilityRating();
+        }
+
+        double cleanlinessAvg = cleanlinessSum / count;
+        double foodQualityAvg = foodQualitySum / count;
+        double safetyAvg = safetySum / count;
+        double locationAvg = locationSum / count;
+        double affordabilityAvg = affordabilitySum / count;
+
+        double overallAvg =
+                (cleanlinessAvg +
+                 foodQualityAvg +
+                 safetyAvg +
+                 locationAvg +
+                 affordabilityAvg) / 5;
+
+        
+		/*
+		 * // optional: not used dto.setCleanlinessRating(null);
+		 * dto.setFoodQualityRating(null); dto.setSafetyRating(null);
+		 * dto.setLocationRating(null); dto.setAffordabilityRating(null);
+		 */
+
+        dto.setOverallRating(overallAvg);
+
+        return dto;
+    }
+
 }

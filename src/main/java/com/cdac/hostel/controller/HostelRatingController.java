@@ -43,15 +43,15 @@ public class HostelRatingController {
     }
 
 	
-	/*
-	 * // 3️ VIEW AVERAGE / SUMMARY RATING OF A HOSTEL
-	 * 
-	 * @GetMapping("/{hostelId}/ratings/summary") public RatingDTO getRatingSummary(
-	 * 
-	 * @PathVariable Long hostelId) {
-	 * 
-	 * return ratingService.getRatingSummary(hostelId); }
-	 */
+	
+	  // 3️ VIEW AVERAGE / SUMMARY RATING OF A HOSTEL
+	  
+	  @GetMapping("/{hostelId}/ratings/summary") 
+	  public RatingDTO getRatingSummary(@PathVariable Long hostelId) {
+	  
+	  return ratingService.getRatingSummary(hostelId); 
+	  }
+	 
 	 
     
 }

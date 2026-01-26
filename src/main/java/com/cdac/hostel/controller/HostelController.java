@@ -32,4 +32,9 @@ public class HostelController {
     public List<Hostel> getApprovedHostels() {
         return hostelService.getApprovedHostels();
     }
+    
+    @GetMapping("/pending")
+    public List<Hostel> getPendingHostels() {
+        return hostelService.getPendingHostels();
+    }
 }
